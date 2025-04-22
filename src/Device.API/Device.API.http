@@ -1,6 +1,6 @@
 @Containers.API_HostAddress = http://localhost:5269
 
-GET {{Containers.API_HostAddress}}/weatherforecast/
+GET {{Device.API_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###

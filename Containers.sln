@@ -1,10 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Containers.Models", "src\Containers.Models\Containers.Models.csproj", "{A0B85145-9DE4-4E26-814A-0A8440050221}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.Models", "src\Device.Models\Device.Models.csproj", "{A0B85145-9DE4-4E26-814A-0A8440050221}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Containers.Application", "src\Containers.Application\Containers.Application.csproj", "{21DEDEB6-62B0-4D87-8BCC-156A96AD4172}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.Application", "src\Device.Application\Device.Application.csproj", "{21DEDEB6-62B0-4D87-8BCC-156A96AD4172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Containers.API", "src\Containers.API\Containers.API.csproj", "{EA510D51-E1F4-4600-8AF5-5F0621778756}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Device.API", "src\Device.API\Device.API.csproj", "{EA510D51-E1F4-4600-8AF5-5F0621778756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
