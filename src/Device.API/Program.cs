@@ -34,7 +34,7 @@ app.MapGet("/api/containers", (IDeviceService deviceService) =>
     }
 });
 
-app.MapPost("api/containers", (IDeviceService deviceService, Device container) =>
+app.MapPost("api/containers", (IDeviceService deviceService, Devices container) =>
 {
     try
     {
@@ -53,7 +53,7 @@ app.MapPost("api/containers", (IDeviceService deviceService, Device container) =
         return Results.Problem(ex.Message);
     }
 });
-app.MapPost("api/containers", (IDeviceService deviceService, Device container) =>
+app.MapPost("api/containers", (IDeviceService deviceService, Devices container) =>
 {
     try
     {
@@ -72,7 +72,7 @@ app.MapPost("api/containers", (IDeviceService deviceService, Device container) =
         return Results.Problem(ex.Message);
     }
 });
-app.MapPut("api/containers/", (IDeviceService deviceService, Device container) =>
+app.MapPut("api/containers/", (IDeviceService deviceService, Devices container) =>
 {
     try
     {

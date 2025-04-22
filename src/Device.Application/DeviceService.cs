@@ -12,9 +12,9 @@ public class DeviceService : IDeviceService
         _connectionString = connectionString;
     }
 
-    public IEnumerable<Device> AllDevice()
+    public IEnumerable<Devices> AllDevice()
     {
-        List<Device> containers = [];
+        List<Devices> containers = [];
         const string queryString = "SELECT * FROM devices";
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -27,7 +27,7 @@ public class DeviceService : IDeviceService
                 {
                     while (reader.Read())
                     {
-                        var containerRow = new Device
+                        var containerRow = new Devices
                         {
                             ID = reader.GetInt32(0),
                             isEnabled = reader.GetBoolean(2),
@@ -48,7 +48,7 @@ public class DeviceService : IDeviceService
 
     private int countRowsAdded;
 
-    public bool AddDevice(Device device)
+    public bool AddDevice(Devices devices)
     {
         countRowsAdded = -1;
         const string insertString =
@@ -57,8 +57,8 @@ public class DeviceService : IDeviceService
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             SqlCommand command = new SqlCommand(insertString, connection);
-            command.Parameters.AddWithValue("@isEnabled", device.isEnabled);
-            command.Parameters.AddWithValue("@Name", device.Name);
+            command.Parameters.AddWithValue("@isEnabled", devices.isEnabled);
+            command.Parameters.AddWithValue("@Name", devices.Name);
 
             connection.Open();
             countRowsAdded = command.ExecuteNonQuery();
@@ -67,7 +67,7 @@ public class DeviceService : IDeviceService
         return countRowsAdded != -1;
     }
 
-    public bool RemoveDevice(Device device)
+    public bool RemoveDevice(Devices devices)
     {
         int countRowsDeleted = -1;
         const string deleteString = "DELETE FROM devices WHERE Id = @Id";
@@ -75,7 +75,7 @@ public class DeviceService : IDeviceService
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             SqlCommand command = new SqlCommand(deleteString, connection);
-            command.Parameters.AddWithValue("@Id", device.ID);
+            command.Parameters.AddWithValue("@Id", devices.ID);
 
             connection.Open();
             countRowsDeleted = command.ExecuteNonQuery();
@@ -83,7 +83,7 @@ public class DeviceService : IDeviceService
 
         return countRowsDeleted != -1;
     }
-    public bool UpdateDevice(Device device)
+    public bool UpdateDevice(Devices devices)
     {
         int countRowsUpdated = -1;
         const string updateString = "UPDATE devices SET isEnabled = @isEnabled, Name = @Name WHERE Id = @Id";
@@ -91,9 +91,9 @@ public class DeviceService : IDeviceService
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
             SqlCommand command = new SqlCommand(updateString, connection);
-            command.Parameters.AddWithValue("@isEnabled", device.isEnabled);
-            command.Parameters.AddWithValue("@Name", device.Name);
-            command.Parameters.AddWithValue("@Id", device.ID);
+            command.Parameters.AddWithValue("@isEnabled", devices.isEnabled);
+            command.Parameters.AddWithValue("@Name", devices.Name);
+            command.Parameters.AddWithValue("@Id", devices.ID);
 
             connection.Open();
             countRowsUpdated = command.ExecuteNonQuery();

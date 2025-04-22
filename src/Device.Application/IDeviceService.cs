@@ -4,8 +4,8 @@ namespace Containers.Application;
 
 public interface IDeviceService
 {
-    IEnumerable<Device> AllDevice();
-    bool AddDevice(Device device);
-    bool RemoveDevice(Device device);
-    bool UpdateDevice(Device device);
+    IEnumerable<Devices> AllDevice();
+    bool AddDevice(Devices devices);
+    bool RemoveDevice(Devices devices);
+    bool UpdateDevice(Devices devices);
 }
