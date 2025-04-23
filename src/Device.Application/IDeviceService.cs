@@ -8,4 +8,5 @@ public interface IDeviceService
     bool AddDevice(Devices devices);
     bool RemoveDevice(Devices devices);
     bool UpdateDevice(Devices devices);
+    Devices? GetDeviceById(string id);
 }

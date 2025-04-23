@@ -101,5 +101,32 @@ public class DeviceService : IDeviceService
 
         return countRowsUpdated != -1;
     }
+    
+    public Devices? GetDeviceById(string id)
+    {
+        Devices? device = null;
+        const string queryString = "SELECT Id, isEnabled, Name FROM devices WHERE Id = @Id";
 
+        using (SqlConnection connection = new SqlConnection(_connectionString))
+        {
+            SqlCommand command = new SqlCommand(queryString, connection);
+            command.Parameters.AddWithValue("@Id", id);
+
+            connection.Open();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    device = new Devices
+                    {
+                        ID = reader.GetInt32(0),
+                        isEnabled = reader.GetBoolean(2),
+                        Name = reader.GetString(3)
+                    };
+                }
+            }
+        }
+
+        return device;
+    }
 }

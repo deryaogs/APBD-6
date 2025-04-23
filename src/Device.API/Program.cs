@@ -72,5 +72,24 @@ app.MapPut("api/containers/", (IDeviceService deviceService, Devices container) 
         return Results.Problem(ex.Message);
     }
 });
+app.MapGet("/api/containers/1", (IDeviceService deviceService, string id) =>
+{
+    try
+    {
+        var device = deviceService.GetDeviceById(id);
+        if (device is not null)
+        {
+            return Results.Ok(device);
+        }
+        else
+        {
+            return Results.NotFound($"Device with ID '{id}' not found.");
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
 
 app.Run();
