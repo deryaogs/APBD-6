@@ -53,25 +53,6 @@ app.MapPost("api/containers", (IDeviceService deviceService, Devices container) 
         return Results.Problem(ex.Message);
     }
 });
-app.MapPost("api/containers", (IDeviceService deviceService, Devices container) =>
-{
-    try
-    {
-        var result = deviceService.RemoveDevice(container);
-        if (result is true)
-        {
-            return Results.Created("/api/containers", result);
-        }
-        else
-        {
-            return Results.BadRequest();
-        }
-    }
-    catch (Exception ex)
-    {
-        return Results.Problem(ex.Message);
-    }
-});
 app.MapPut("api/containers/", (IDeviceService deviceService, Devices container) =>
 {
     try
