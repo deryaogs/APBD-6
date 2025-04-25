@@ -30,8 +30,8 @@ public class DeviceService : IDeviceService
                         var containerRow = new Devices
                         {
                             ID = reader.GetInt32(0),
-                            isEnabled = reader.GetBoolean(2),
-                            Name = reader.GetString(3)
+                            isEnabled = reader.GetBoolean(1),
+                            Name = reader.GetString(2)
                         };
                         containers.Add(containerRow);
                     }
@@ -120,8 +120,8 @@ public class DeviceService : IDeviceService
                     device = new Devices
                     {
                         ID = reader.GetInt32(0),
-                        isEnabled = reader.GetBoolean(2),
-                        Name = reader.GetString(3)
+                        isEnabled = reader.GetBoolean(1),
+                        Name = reader.GetString(2)
                     };
                 }
             }

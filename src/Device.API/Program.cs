@@ -22,11 +22,30 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/containers", (IDeviceService deviceService) =>
+app.MapGet("/api/devices", (IDeviceService deviceService) =>
 {
     try
     {
         return Results.Ok(deviceService.AllDevice());
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/2", (IDeviceService deviceService, Devices container) =>
+{
+    try
+    {
+        var result = deviceService.RemoveDevice(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
     }
     catch (Exception ex)
     {
