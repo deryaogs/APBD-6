@@ -22,7 +22,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/api/devices", (IDeviceService deviceService) =>
+app.MapGet("/api/devices/ShowAllDevice", (IDeviceService deviceService) =>
 {
     try
     {
@@ -33,19 +33,33 @@ app.MapGet("/api/devices", (IDeviceService deviceService) =>
         return Results.Problem(ex.Message);
     }
 });
-app.MapPost("api/containers/2", (IDeviceService deviceService, Devices container) =>
+app.MapGet("/api/devices/ShowAllEmbedded", (IDeviceService deviceService) =>
 {
     try
     {
-        var result = deviceService.RemoveDevice(container);
-        if (result is true)
-        {
-            return Results.Created("/api/containers", result);
-        }
-        else
-        {
-            return Results.BadRequest();
-        }
+        return Results.Ok(deviceService.AllEmbedded());
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapGet("/api/devices/ShowAllSmartWatch", (IDeviceService deviceService) =>
+{
+    try
+    {
+        return Results.Ok(deviceService.AllSmartWatch());
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapGet("/api/devices/ShowAllPersonalComputer", (IDeviceService deviceService) =>
+{
+    try
+    {
+        return Results.Ok(deviceService.AllPersonalComputer());
     }
     catch (Exception ex)
     {
@@ -53,7 +67,7 @@ app.MapPost("api/containers/2", (IDeviceService deviceService, Devices container
     }
 });
 
-app.MapPost("api/containers", (IDeviceService deviceService, Devices container) =>
+app.MapPost("api/containers/AddDevice", (IDeviceService deviceService, Devices container) =>
 {
     try
     {
@@ -72,7 +86,142 @@ app.MapPost("api/containers", (IDeviceService deviceService, Devices container) 
         return Results.Problem(ex.Message);
     }
 });
-app.MapPut("api/containers/", (IDeviceService deviceService, Devices container) =>
+
+
+app.MapPost("api/containers/AddEmbedded", (IDeviceService deviceService, Embedded container) =>
+{
+    try
+    {
+        var result = deviceService.AddEmbedded(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/AddSmartWatch", (IDeviceService deviceService, SmartWatch container) =>
+{
+    try
+    {
+        var result = deviceService.AddSmartWatch(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/AddPersonalComputer", (IDeviceService deviceService, PersonalComputer container) =>
+{
+    try
+    {
+        var result = deviceService.AddPersonalComputer(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/RemoveDevice", (IDeviceService deviceService, Devices container) =>
+{
+    try
+    {
+        var result = deviceService.RemoveDevice(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/RemoveEmbedded", (IDeviceService deviceService, Embedded container) =>
+{
+    try
+    {
+        var result = deviceService.RemoveEmbedded(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/RemoveSmartWatch", (IDeviceService deviceService, SmartWatch container) =>
+{
+    try
+    {
+        var result = deviceService.RemoveSmartWatch(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPost("api/containers/RemovePeresonalComputer", (IDeviceService deviceService, PersonalComputer container) =>
+{
+    try
+    {
+        var result = deviceService.RemovePersonalComputer(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPut("api/containers/UpdateDevice", (IDeviceService deviceService, Devices container) =>
 {
     try
     {
@@ -91,7 +240,64 @@ app.MapPut("api/containers/", (IDeviceService deviceService, Devices container) 
         return Results.Problem(ex.Message);
     }
 });
-app.MapGet("/api/containers/1", (IDeviceService deviceService, string id) =>
+app.MapPut("api/containers/UpdateSmartWatch", (IDeviceService deviceService, SmartWatch container) =>
+{
+    try
+    {
+        var result = deviceService.UpdateSmartWatch(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPut("api/containers/UpdateEmbedded", (IDeviceService deviceService, Embedded container) =>
+{
+    try
+    {
+        var result = deviceService.UpdateEmbedded(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapPut("api/containers/UpdatePersonalComputer", (IDeviceService deviceService, PersonalComputer container) =>
+{
+    try
+    {
+        var result = deviceService.UpdatePersonalComputer(container);
+        if (result is true)
+        {
+            return Results.Created("/api/containers", result);
+        }
+        else
+        {
+            return Results.BadRequest();
+        }
+    }
+    catch (Exception ex)
+    {
+        return Results.Problem(ex.Message);
+    }
+});
+app.MapGet("/api/containers/ShowDeviceByID", (IDeviceService deviceService, string id) =>
 {
     try
     {

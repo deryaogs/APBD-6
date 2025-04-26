@@ -1,0 +1,6 @@
+insert into devices (IsEnabled, Name) values (1, 'SW-1')
+insert into devices (IsEnabled, Name) values (1, 'Embedded-1')
+insert into devices (IsEnabled, Name) values (1, 'PersonalCompuer-1')
+insert into SmartWatch (DeviceId, BatteryPercentage) values (2, 92)
+insert into Embedded (DeviceId, NetworkName, IpAddress) values (3, 'Net', 'IpAddress')
+insert into PersonalComputer (DeviceId, OperationSystem) values (4, 'IOS')
